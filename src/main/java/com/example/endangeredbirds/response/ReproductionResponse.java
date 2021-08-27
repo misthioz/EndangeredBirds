@@ -21,7 +21,7 @@ public class ReproductionResponse {
         this.numOffspring = reproduction.getNumOffspring();
     }
 
-    public List<ReproductionResponse> convert(List<Reproduction> listrep){
+    public static List<ReproductionResponse> convert(List<Reproduction> listrep){
         return listrep.stream().map(ReproductionResponse::new).collect(Collectors.toList());
     }
 }
