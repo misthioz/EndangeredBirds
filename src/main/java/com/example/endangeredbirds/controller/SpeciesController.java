@@ -4,6 +4,7 @@ import com.example.endangeredbirds.entity.Species;
 import com.example.endangeredbirds.repository.SpeciesRepository;
 import com.example.endangeredbirds.request.SpeciesRequest;
 import com.example.endangeredbirds.response.SpeciesResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/species")
 public class SpeciesController {
+    @Autowired
     private SpeciesRepository speciesRepository;
 
     @GetMapping("/list")
@@ -57,7 +59,7 @@ public class SpeciesController {
     @GetMapping("/findHabitat/{habitat}")
     public ResponseEntity<?> findByHabitat(@PathVariable String habitat){
         try{
-            List<Species> lspecies = speciesRepository.findbyHabitat(habitat);
+            List<Species> lspecies = speciesRepository.findByHabitat(habitat);
             if(!lspecies.isEmpty()){
                 return ResponseEntity.ok().body(SpeciesResponse.convert(lspecies));
             }else{
