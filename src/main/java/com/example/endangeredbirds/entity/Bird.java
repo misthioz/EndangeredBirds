@@ -32,11 +32,10 @@ public class Bird {
     @JoinColumn(name="species_id", referencedColumnName = "id")
     @NotNull
     private Species speciesId;
+    private String speciesName;
+    private String nickname;
 
-    private String name;
-
-
-    private SexEnum sex;
+    private String sex;
 
     private LocalDate dateOfBirth;
 }
