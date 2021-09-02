@@ -101,7 +101,7 @@ public class BirdController {
 
             return ResponseEntity.created(uri).body(new BirdResponse(bird));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to connect to the database");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to save data");
         }
     }
 
