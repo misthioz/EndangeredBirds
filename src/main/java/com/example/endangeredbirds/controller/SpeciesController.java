@@ -81,7 +81,7 @@ public class SpeciesController {
             URI uri = uriComponentsBuilder.path("/species/{id}").buildAndExpand(species.getId()).toUri();
             return ResponseEntity.created(uri).body(new SpeciesResponse(species));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to connect to the database");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to save data");
         }
     }
 
