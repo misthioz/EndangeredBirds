@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 public class BirdRequest {
     private int speciesId;
-    private String speciesName;
+    //private String speciesName;
     private String nickname;
     private String sex;
     private LocalDate dateOfBirth;
@@ -19,7 +19,7 @@ public class BirdRequest {
     public Bird convert(Species species){
         Bird bird = new Bird();
         bird.setSpeciesId(species);
-        bird.setSpeciesName(this.speciesName);
+        bird.setSpeciesName(species.getName());
         bird.setNickname(this.nickname);
         bird.setSex(this.sex);
         bird.setDateOfBirth(this.dateOfBirth);
@@ -28,6 +28,6 @@ public class BirdRequest {
     }
 
     public Bird convertUpdate(int id, Species species){
-        return new Bird(id,species,speciesName,nickname,sex,dateOfBirth);
+        return new Bird(id,species,species.getName(),nickname,sex,dateOfBirth);
     }
 }

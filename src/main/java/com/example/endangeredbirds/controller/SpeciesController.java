@@ -4,6 +4,7 @@ import com.example.endangeredbirds.entity.Species;
 import com.example.endangeredbirds.repository.SpeciesRepository;
 import com.example.endangeredbirds.request.SpeciesRequest;
 import com.example.endangeredbirds.response.SpeciesResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/species")
 public class SpeciesController {
-    @Autowired
+
     private SpeciesRepository speciesRepository;
 
     @GetMapping("/list")

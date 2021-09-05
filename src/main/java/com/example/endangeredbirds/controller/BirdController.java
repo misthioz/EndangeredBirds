@@ -6,6 +6,8 @@ import com.example.endangeredbirds.repository.BirdRepository;
 import com.example.endangeredbirds.repository.SpeciesRepository;
 import com.example.endangeredbirds.request.BirdRequest;
 import com.example.endangeredbirds.response.BirdResponse;
+import com.example.endangeredbirds.service.BirdService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +24,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/bird")
 public class BirdController {
-    @Autowired
     private BirdRepository birdRepository;
-    @Autowired
     private SpeciesRepository speciesRepository;
+    private BirdService birdService;
 
     @GetMapping("/list")
     public ResponseEntity<List<BirdResponse>> listBirds(){
@@ -95,10 +97,11 @@ public class BirdController {
         Bird bird = birdRequest.convert(species);
 
         try{
+            birdService.incrementNumCaptive(species);
+
             birdRepository.save(bird);
 
             URI uri = uriComponentsBuilder.path("/bird/{id}").buildAndExpand(bird.getBirdId()).toUri();
-
             return ResponseEntity.created(uri).body(new BirdResponse(bird));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to save data");
