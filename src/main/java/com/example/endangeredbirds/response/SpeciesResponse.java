@@ -15,7 +15,7 @@ public class SpeciesResponse {
     @Getter private int numWild;
 
     public SpeciesResponse(Species species){
-        this.id = species.getId();
+        this.id = species.getSpeciesId();
         this.name = species.getName();
         this.scientificName = species.getScientificName();
         this.habitat = species.getHabitat();

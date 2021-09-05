@@ -21,7 +21,8 @@ import javax.persistence.Table;
 public class Species {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "species_id")
+    private int speciesId;
 
     private String name;
     private String scientificName;

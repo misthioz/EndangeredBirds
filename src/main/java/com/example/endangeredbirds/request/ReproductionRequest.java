@@ -19,11 +19,12 @@ public class ReproductionRequest {
         reproduction.setMatingSeason(this.matingSeason);
         reproduction.setHatchingTime(this.hatchingTime);
         reproduction.setNumOffspring(this.numOffspring);
+        reproduction.setSpeciesName(species.getName());
 
         return reproduction;
     }
 
     public Reproduction convertUpdate(int id, Species species){
-        return new Reproduction(id,species,matingSeason,hatchingTime,numOffspring);
+        return new Reproduction(id,species,matingSeason,hatchingTime,numOffspring,species.getName());
     }
 }

@@ -26,10 +26,10 @@ import java.time.LocalDate;
 public class Bird {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int birdId;
 
     @ManyToOne
-    @JoinColumn(name="species_id", referencedColumnName = "id")
+    @JoinColumn(name="species_id", referencedColumnName = "species_id")
     @NotNull
     private Species speciesId;
     private String speciesName;

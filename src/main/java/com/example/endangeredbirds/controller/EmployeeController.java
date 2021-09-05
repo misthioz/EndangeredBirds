@@ -67,7 +67,7 @@ public class EmployeeController {
         try{
             employeeRepository.save(employee);
 
-            URI uri = uriComponentsBuilder.path("/employee/{id}").buildAndExpand(employee.getId()).toUri();
+            URI uri = uriComponentsBuilder.path("/employee/{id}").buildAndExpand(employee.getId_employee()).toUri();
             return ResponseEntity.created(uri).body(new EmployeeResponse(employee));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to save data");
@@ -78,7 +78,7 @@ public class EmployeeController {
     public ResponseEntity<?> update(
             @PathVariable int id, @RequestBody EmployeeRequest employeeRequest){
         List<Employee> employees = employeeRepository.findAll();
-        if(employees.stream().anyMatch(e -> e.getId() == id)){
+        if(employees.stream().anyMatch(e -> e.getId_employee() == id)){
             try{
                 Employee employee = employeeRequest.convertUpdate(id);
                 employeeRepository.save(employee);

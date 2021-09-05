@@ -6,7 +6,6 @@ import com.example.endangeredbirds.repository.BirdRepository;
 import com.example.endangeredbirds.repository.SpeciesRepository;
 import com.example.endangeredbirds.request.BirdRequest;
 import com.example.endangeredbirds.response.BirdResponse;
-import com.example.endangeredbirds.response.SpeciesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +27,7 @@ import java.util.List;
 public class BirdController {
     @Autowired
     private BirdRepository birdRepository;
+    @Autowired
     private SpeciesRepository speciesRepository;
 
     @GetMapping("/list")
@@ -97,7 +97,7 @@ public class BirdController {
         try{
             birdRepository.save(bird);
 
-            URI uri = uriComponentsBuilder.path("/bird/{id}").buildAndExpand(bird.getId()).toUri();
+            URI uri = uriComponentsBuilder.path("/bird/{id}").buildAndExpand(bird.getBirdId()).toUri();
 
             return ResponseEntity.created(uri).body(new BirdResponse(bird));
         }catch (Exception e){
@@ -110,7 +110,7 @@ public class BirdController {
         Species species = speciesRepository.findById(id).orElseThrow(Exception::new);
 
         List<Bird> birds = birdRepository.findAll();
-        if(birds.stream().anyMatch(b -> b.getId() == id)){
+        if(birds.stream().anyMatch(b -> b.getBirdId() == id)){
             try{
                 Bird bird = birdRequest.convertUpdate(id,species);
                 birdRepository.save(bird);

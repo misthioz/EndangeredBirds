@@ -22,12 +22,13 @@ import javax.persistence.Table;
 public class Reproduction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int reproductionId;
 
     @OneToOne
-    @JoinColumn(name="species_id", referencedColumnName = "id")
+    @JoinColumn(name="species_id", referencedColumnName = "species_id")
     private Species speciesId;
     private String matingSeason;
     private int hatchingTime;
     private int numOffspring;
+    private String speciesName;
 }

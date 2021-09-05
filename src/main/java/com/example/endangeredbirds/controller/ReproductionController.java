@@ -27,6 +27,7 @@ import java.util.List;
 public class ReproductionController {
     @Autowired
     private ReproductionRepository reproductionRepository;
+    @Autowired
     private SpeciesRepository speciesRepository;
 
     @GetMapping("/list")
@@ -82,7 +83,7 @@ public class ReproductionController {
 
         try{
             reproductionRepository.save(reproduction);
-            URI uri = uriComponentsBuilder.path("/reproduction/{id}").
+            URI uri = uriComponentsBuilder.path("/reproduction/{idReproduction}").
                     buildAndExpand(reproduction.getSpeciesId()).toUri();
 
             return ResponseEntity.created(uri).body(new ReproductionResponse(reproduction));
@@ -91,12 +92,12 @@ public class ReproductionController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{idReproduction}")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody ReproductionRequest reproductionRequest) throws Exception {
         Species species = speciesRepository.findById(reproductionRequest.getSpeciesId()).orElseThrow(Exception::new);
         List<Reproduction> replist = reproductionRepository.findAll();
 
-        if(replist.stream().anyMatch(r -> r.getId() == id)){
+        if(replist.stream().anyMatch(r -> r.getReproductionId() == id)){
             try{
                 Reproduction reproduction = reproductionRequest.convertUpdate(id, species);
                 reproductionRepository.save(reproduction);

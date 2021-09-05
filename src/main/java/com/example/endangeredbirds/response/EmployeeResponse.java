@@ -14,7 +14,7 @@ public class EmployeeResponse {
     @Getter private LocalDate date_of_birth;
 
     public EmployeeResponse(Employee employee){
-        this.id = employee.getId();
+        this.id = employee.getId_employee();
         this.fullname = employee.getFullname();
         this.role = employee.getRole();
         this.date_of_birth = employee.getDate_of_birth();

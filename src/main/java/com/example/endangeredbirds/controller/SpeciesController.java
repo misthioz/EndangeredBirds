@@ -78,7 +78,7 @@ public class SpeciesController {
         try{
             speciesRepository.save(species);
 
-            URI uri = uriComponentsBuilder.path("/species/{id}").buildAndExpand(species.getId()).toUri();
+            URI uri = uriComponentsBuilder.path("/species/{id}").buildAndExpand(species.getSpeciesId()).toUri();
             return ResponseEntity.created(uri).body(new SpeciesResponse(species));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to save data");
@@ -89,7 +89,7 @@ public class SpeciesController {
     public ResponseEntity<?> update(
             @PathVariable int id, @RequestBody SpeciesRequest speciesRequest){
         List<Species> lspecies = speciesRepository.findAll();
-        if(lspecies.stream().anyMatch(s -> s.getId() == id)){
+        if(lspecies.stream().anyMatch(s -> s.getSpeciesId() == id)){
             try{
                 Species species = speciesRequest.convertUpdate(id);
                 speciesRepository.save(species);

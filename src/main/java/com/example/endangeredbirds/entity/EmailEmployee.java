@@ -28,7 +28,7 @@ public class EmailEmployee {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "id_employee", referencedColumnName = "id")
+    @JoinColumn(name = "id_employee", referencedColumnName = "id_employee")
     @NotNull
     private Employee idEmployee;
 }

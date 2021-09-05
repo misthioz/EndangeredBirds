@@ -27,6 +27,7 @@ import java.util.List;
 public class EmailEmployeeController {
     @Autowired
     private EmailEmployeeRepository emailEmployeeRepository;
+    @Autowired
     private EmployeeRepository employeeRepository;
 
     @GetMapping("/list")

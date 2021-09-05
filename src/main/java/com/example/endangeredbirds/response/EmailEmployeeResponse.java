@@ -13,7 +13,7 @@ public class EmailEmployeeResponse {
 
     public EmailEmployeeResponse(EmailEmployee emailEmployee){
         this.id = emailEmployee.getId();
-        this.employeeId = emailEmployee.getIdEmployee().getId();
+        this.employeeId = emailEmployee.getIdEmployee().getId_employee();
         this.email = emailEmployee.getEmail();
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BirdResponse {
-    @Getter private int id;
+    @Getter private int birdId;
     @Getter private int speciesId;
     @Getter private String speciesName;
     @Getter private String nickname;
@@ -16,8 +16,8 @@ public class BirdResponse {
     @Getter private LocalDate dateOfBirth;
 
     public BirdResponse(Bird bird){
-        this.id = bird.getId();
-        this.speciesId = bird.getSpeciesId().getId();
+        this.birdId = bird.getBirdId();
+        this.speciesId = bird.getSpeciesId().getSpeciesId();
         this.speciesName = bird.getSpeciesName();
         this.nickname = bird.getNickname();
         this.sex = bird.getSex();
